@@ -1,6 +1,7 @@
 package demo.nopcommerce.com;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -25,12 +26,12 @@ public class TS_03_MyAccount extends BaseTest {
 	
 	@AfterClass
 	public void afterClass () {
-		driver.quit();
+		//driver.quit();
 	}
 	//chua tim duoc cach verify do khi an nut save, website khong tra thong bao
 	@Test
 	public void TC_01_updateCustomerInfor() {
-		loginToUpdateAccount("Cuongtest133@gmail.com","abc123");
+		loginAccount("Cuongtest133@gmail.com","abc123");
 		myAccountPage.checkMaleOption();
 		myAccountPage.inputCompanyName("Test Company");
 		myAccountPage.clickSaveButton();
@@ -49,10 +50,29 @@ public class TS_03_MyAccount extends BaseTest {
 		myAccountPage.inputZipPostalCodeTextboxAddress("11223");
 		myAccountPage.inputPhoneNumberTextboxAddress("0933123123");
 		myAccountPage.clickSaveButtonAddress();
+		//verify thong tin
+		Assert.assertTrue(myAccountPage.isNameDisplayed("Manh Cuong Nguyen"));
+		Assert.assertTrue(myAccountPage.isEmailDisplayed("Email: testaddress@gmail.com"));
+		Assert.assertTrue(myAccountPage.isPhoneNumberDisplayed("Phone number: 0933123123"));
+		Assert.assertTrue(myAccountPage.isAddress1Displayed("1 Bui Vien, Q1, HCM"));
+		Assert.assertTrue(myAccountPage.isCityZipCodeDisplayed("HCM, 11223"));
+		Assert.assertTrue(myAccountPage.isCountryDisplayed("Afghanistan"));
 		
 	}
 	
-	public void loginToUpdateAccount(String email, String password) {
+	@Test
+	public void TC_03_ChangePasswordAndLoginAgain() {
+		myAccountPage.clickToChangePasswordTab();
+		myAccountPage.inputOldPasswordTextbox("abc123");
+		myAccountPage.inputToNewPasswordTextbox("abc124");
+		myAccountPage.inputToConfirmPasswordTextbox("abc124");
+		myAccountPage.clickToChangePasswordButton();
+		myAccountPage.openUrl(driver, "https://demo.nopcommerce.com");
+		myAccountPage.clickToLogoutButton();
+		loginAccount("Cuongtest133@gmail.com","abc125");
+	}
+	
+	public void loginAccount(String email, String password) {
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();

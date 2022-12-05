@@ -69,4 +69,59 @@ public class MyAccountPageObject extends BasePage {
 	public void clickSaveButtonAddress() {
 		clickToElement(driver, MyAccountPageUI.SAVE_ADDRESS_BUTTON);
 	}
+	
+	public boolean isNameDisplayed (String value) {
+		String message = getTextOfElement(driver, MyAccountPageUI.NAME_TEXT);
+		return message.equals(value);
+	}
+	
+	public boolean isEmailDisplayed (String value) {
+		String message = getTextOfElement(driver, MyAccountPageUI.EMAIL_TEXT);
+		return message.equals(value);
+	}
+	
+	public boolean isPhoneNumberDisplayed(String value) {
+		String message = getTextOfElement(driver, MyAccountPageUI.PHONE_NUMBER_TEXT);
+		return message.equals(value);
+	}
+	
+	public boolean isAddress1Displayed(String value) {
+		String message = getTextOfElement(driver, MyAccountPageUI.ADDRESS_1_TEXT);
+		return message.equals(value);
+	}
+	
+	public boolean isCityZipCodeDisplayed(String value) {
+		String message = getTextOfElement(driver,MyAccountPageUI.CITY_ZIP_CODE_TEXT);
+		return message.equals(value);
+	}
+	
+	public boolean isCountryDisplayed(String value) {
+		String message = getTextOfElement(driver, MyAccountPageUI.COUNTRY_TEXT);
+		return message.equals(value);
+	}
+	
+	public void clickToChangePasswordTab() {
+		clickToElement(driver, MyAccountPageUI.CHANGE_PASSWORD_TAB);
+	}
+	
+	public void inputOldPasswordTextbox(String oldPassword) {
+		sendKeysToElement(driver, MyAccountPageUI.OLD_PASSWORD_TEXTBOX, oldPassword);
+	}
+	
+	public void inputToNewPasswordTextbox(String newPassword) {
+		sendKeysToElement(driver, MyAccountPageUI.NEW_PASSWORD_TEXTBOX, newPassword);
+	}
+	
+	public void inputToConfirmPasswordTextbox(String confirmPassword) {
+		sendKeysToElement(driver, MyAccountPageUI.CONFIRM_PASSWORD_TEXTBOX, confirmPassword);
+	}
+	
+	public void clickToChangePasswordButton() {
+		clickToElement(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
+	}
+	
+	public void clickToLogoutButton() {
+		clickToElement(driver, MyAccountPageUI.LOG_OUT_BUTTON);
+	}
+	
 }

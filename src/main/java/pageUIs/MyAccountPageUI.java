@@ -17,4 +17,20 @@ public class MyAccountPageUI {
 	public static final String ZIP_POSTAL_CODE_TEXTBOX_ADDRESS = "//input[@id='Address_ZipPostalCode']";
 	public static final String PHONE_NUMBER_ADDRESS = "//input[@id='Address_PhoneNumber']";
 	public static final String SAVE_ADDRESS_BUTTON = "//button[normalize-space()='Save']";
+	
+	public static final String NAME_TEXT = "//li[@class='name']";
+	public static final String EMAIL_TEXT = "//li[@class='email']";
+	public static final String PHONE_NUMBER_TEXT = "//li[@class='phone']";
+	public static final String ADDRESS_1_TEXT = "//li[@class='address1']";
+	public static final String CITY_ZIP_CODE_TEXT = "//li[@class='city-state-zip']";
+	public static final String COUNTRY_TEXT = "//li[@class='country']";
+	
+	public static final String CHANGE_PASSWORD_TAB = "//a[normalize-space()='Change password']";
+	public static final String OLD_PASSWORD_TEXTBOX = "//input[@id='OldPassword']";
+	public static final String NEW_PASSWORD_TEXTBOX = "//input[@id='NewPassword']";
+	public static final String CONFIRM_PASSWORD_TEXTBOX = "//input[@id='ConfirmNewPassword']";
+	public static final String CHANGE_PASSWORD_BUTTON = "//button[normalize-space()='Change password']";
+	
+	public static final String LOG_OUT_BUTTON = "//a[@class='ico-logout']";
+	
 }

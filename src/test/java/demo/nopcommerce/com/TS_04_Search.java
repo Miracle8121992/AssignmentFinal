@@ -33,7 +33,7 @@ public class TS_04_Search extends BaseTest {
 	
 	@Test
 	public void TC_01_SearchWithEmptyData() {
-		loginAccount("Cuongtest133@gmail.com", "abc124");
+		loginAccount("Cuongtest133@gmail.com", "abc123");
 		footer.clickToSearchButton();
 		searchPage.inputToSearchTextbox("");
 		searchPage.clickToSearchButton();

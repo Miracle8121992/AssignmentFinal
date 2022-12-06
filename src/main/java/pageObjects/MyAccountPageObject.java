@@ -120,8 +120,6 @@ public class MyAccountPageObject extends BasePage {
 		clickToElement(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
 	}
 	
-	public void clickToLogoutButton() {
-		clickToElement(driver, MyAccountPageUI.LOG_OUT_BUTTON);
-	}
+	
 	
 }

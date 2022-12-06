@@ -8,13 +8,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
+import pageObjects.HeaderObject;
 import pageObjects.LoginPageObject;
 import pageObjects.MyAccountPageObject;
+import pageUIs.LoginPageUI;
 
 public class TS_03_MyAccount extends BaseTest {
 	WebDriver driver;
 	MyAccountPageObject myAccountPage;
 	LoginPageObject loginPage;
+	HeaderObject header;
 	
 	@Parameters("browser")
 	@BeforeClass
@@ -22,6 +25,7 @@ public class TS_03_MyAccount extends BaseTest {
 		driver = getBrowserDriver (browserName, "https://demo.nopcommerce.com/customer/info");
 		myAccountPage = new MyAccountPageObject(driver);
 		loginPage = new LoginPageObject(driver);
+		header = new HeaderObject (driver);
 	}
 	
 	@AfterClass
@@ -50,7 +54,7 @@ public class TS_03_MyAccount extends BaseTest {
 		myAccountPage.inputZipPostalCodeTextboxAddress("11223");
 		myAccountPage.inputPhoneNumberTextboxAddress("0933123123");
 		myAccountPage.clickSaveButtonAddress();
-		//verify thong tin
+		//verify information
 		Assert.assertTrue(myAccountPage.isNameDisplayed("Manh Cuong Nguyen"));
 		Assert.assertTrue(myAccountPage.isEmailDisplayed("Email: testaddress@gmail.com"));
 		Assert.assertTrue(myAccountPage.isPhoneNumberDisplayed("Phone number: 0933123123"));
@@ -68,8 +72,13 @@ public class TS_03_MyAccount extends BaseTest {
 		myAccountPage.inputToConfirmPasswordTextbox("abc124");
 		myAccountPage.clickToChangePasswordButton();
 		myAccountPage.openUrl(driver, "https://demo.nopcommerce.com");
-		myAccountPage.clickToLogoutButton();
-		loginAccount("Cuongtest133@gmail.com","abc125");
+		header.clickToLogOutButton();
+		header.clickToLogInButton();
+		//login fail
+		loginAccount("Cuongtest133@gmail.com","abc123");
+		Assert.assertTrue(loginPage.isLoginWithRegisteredEmailAndBlankPasswordErrorMessage("The credentials provided are incorrect"));
+		//login success with new password
+		loginAccount("Cuongtest133@gmail.com","abc124");
 	}
 	
 	public void loginAccount(String email, String password) {

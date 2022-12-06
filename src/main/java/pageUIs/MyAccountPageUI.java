@@ -31,6 +31,6 @@ public class MyAccountPageUI {
 	public static final String CONFIRM_PASSWORD_TEXTBOX = "//input[@id='ConfirmNewPassword']";
 	public static final String CHANGE_PASSWORD_BUTTON = "//button[normalize-space()='Change password']";
 	
-	public static final String LOG_OUT_BUTTON = "//a[@class='ico-logout']";
+	
 	
 }

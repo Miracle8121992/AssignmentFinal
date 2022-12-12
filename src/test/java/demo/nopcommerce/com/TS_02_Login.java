@@ -9,22 +9,26 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import common.BaseTest;
+import pageObjects.HeaderObject;
+import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 
 public class TS_02_Login extends BaseTest {
 	WebDriver driver;
 	LoginPageObject loginPage;
+	HeaderObject header;
 	
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName, "https://demo.nopcommerce.com/login?returnUrl=%2F");
 		loginPage = new LoginPageObject(driver);
+		header = new HeaderObject(driver);
 	}
 
 	@AfterClass
 	public void afterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 	
 	@Test
@@ -71,5 +75,6 @@ public class TS_02_Login extends BaseTest {
 		loginPage.inputToEmailTextbox("Cuongtest133@gmail.com");
 		loginPage.inputToPasswordTextbox("abc123");
 		loginPage.clickToLoginButton();
+		header.isMyAccountDisplayed("My account");
 	}
 }

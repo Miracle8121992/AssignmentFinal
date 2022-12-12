@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import common.BasePage;
 import pageUIs.HeaderUI;
+import pageUIs.HomePageUI;
 
 public class HeaderObject extends BasePage {
 	WebDriver driver;
@@ -18,5 +19,10 @@ public class HeaderObject extends BasePage {
 	
 	public void clickToLogInButton() {
 		clickToElement(driver, HeaderUI.LOG_IN_BUTTON);
+	}
+	
+	public boolean isMyAccountDisplayed(String value) {
+		String message = getTextOfElement(driver, HeaderUI.MY_ACCOUNT_BUTTON);
+		return message.equals(value);
 	}
 }

@@ -11,7 +11,6 @@ import common.BaseTest;
 import pageObjects.HeaderObject;
 import pageObjects.LoginPageObject;
 import pageObjects.MyAccountPageObject;
-import pageUIs.LoginPageUI;
 
 public class TS_03_MyAccount extends BaseTest {
 	WebDriver driver;
@@ -30,7 +29,7 @@ public class TS_03_MyAccount extends BaseTest {
 	
 	@AfterClass
 	public void afterClass () {
-		//driver.quit();
+		driver.quit();
 	}
 	//chua tim duoc cach verify do khi an nut save, website khong tra thong bao
 	@Test
@@ -79,6 +78,8 @@ public class TS_03_MyAccount extends BaseTest {
 		Assert.assertTrue(loginPage.isLoginWithRegisteredEmailAndBlankPasswordErrorMessage("The credentials provided are incorrect"));
 		//login success with new password
 		loginAccount("Cuongtest133@gmail.com","abc124");
+		header.isMyAccountDisplayed("My account");
+		
 	}
 	
 	public void loginAccount(String email, String password) {

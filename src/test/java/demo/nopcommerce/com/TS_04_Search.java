@@ -33,7 +33,6 @@ public class TS_04_Search extends BaseTest {
 	
 	@Test
 	public void TC_01_SearchWithEmptyData() {
-		loginAccount("Cuongtest133@gmail.com", "abc123");
 		footer.clickToSearchButton();
 		searchPage.inputToSearchTextbox("");
 		searchPage.clickToSearchButton();
@@ -50,12 +49,36 @@ public class TS_04_Search extends BaseTest {
 	@Test
 	public void TC_03_SearchWithKeywordLenovo() {
 		searchPage.inputToSearchTextbox("Lenovo");
+		searchPage.clickToSearchButton();
+		// Verify có sản phẩm xuất hiện
+		searchPage.isAddToCartButton("ADD TO CART");
+		// Verify sản phẩm có chứa chữ “Lenovo” 
+		Assert.assertTrue(searchPage.isVerifyElements("Lenovo"));
 		
 	}
 	
-	public void loginAccount(String email, String password) {
-		loginPage.inputToEmailTextbox(email);
-		loginPage.inputToPasswordTextbox(password);
-		loginPage.clickToLoginButton();
+	@Test
+	public void TC_04_AdvanceSearchWithParentCategories() {
+		searchPage.inputToSearchTextbox("Apple Macbook Pro");
+		searchPage.clickToAdvanceSearchCheckBox();
+		searchPage.selectTextOfDropdown("Computers");
+		searchPage.clickToSearchButton();
+		Assert.assertTrue(searchPage.isWrongDataErrorMessage("No products were found that matched your criteria."));
 	}
+	
+	@Test
+	public void TC_05_AdvanceSearchWithSubCategories() {
+		searchPage.refreshCurrentPage(driver);
+		footer.clickToSearchButton();
+		searchPage.inputToSearchTextbox("Apple Macbook Pro");
+		searchPage.clickToAdvanceSearchCheckBox();
+		searchPage.selectTextOfDropdown("Computers");
+		searchPage.clickToAutomaticallySearchCheckBox();
+		searchPage.clickToSearchButton();
+		// Verify sản phẩm có chứa chữ “Apple Macbook Pro” 
+		Assert.assertTrue(searchPage.isVerifyElements("Apple Macbook Pro"));
+		
+		
+	}
+	
 }
